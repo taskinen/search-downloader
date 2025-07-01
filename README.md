@@ -4,12 +4,12 @@ A Python command-line tool that downloads files with a specific extension from a
 
 ## Features
 
-- 🔍 Search for files by extension on any domain using Google Custom Search API
-- 📥 Automatic file downloading with progress tracking
-- 🔑 API credential management with secure storage
-- 🚀 Fast and reliable using Google's official API
-- 🛡️ Respects rate limits and implements proper error handling
-- 💾 Duplicate detection to avoid re-downloading files
+- Search for files by extension on any domain using Google Custom Search API
+- Automatic file downloading with progress tracking
+- API credential management with secure storage
+- Fast and reliable using Google's official API
+- Respects rate limits and implements proper error handling
+- Duplicate detection to avoid re-downloading files
 
 ## Prerequisites
 
@@ -65,24 +65,9 @@ You'll need to set up Google Custom Search API credentials:
 
 ## Installation
 
-1. Clone or download the repository:
-```bash
-git clone <repository-url>
-cd file-downloader
-```
+1. Clone or download the repository.
 
-2. Create the `pyproject.toml` file:
-```toml
-[project]
-name = "file-downloader"
-version = "1.0.0"
-requires-python = ">=3.8"
-dependencies = [
-    "requests>=2.31.0",
-]
-```
-
-3. Install dependencies using `uv`:
+2. Install dependencies using `uv`:
 ```bash
 # This creates a virtual environment and installs dependencies
 uv sync
@@ -96,7 +81,7 @@ Run the script with `uv run`:
 
 ```bash
 # Search and download PDF files from a domain
-uv run python file_downloader.py example.com pdf
+uv run python file-downloader.py example.com pdf
 ```
 
 On first run, you'll be prompted to enter your API credentials.
@@ -106,13 +91,13 @@ On first run, you'll be prompted to enter your API credentials.
 #### macOS / Linux
 ```bash
 # Download 20 PDF files to a specific directory
-uv run python file_downloader.py puolustusvoimat.fi pdf -n 20 -d ~/Downloads/pdfs
+uv run python file-downloader.py puolustusvoimat.fi pdf -n 20 -d ~/Downloads/pdfs
 
 # Save credentials for future use
-uv run python file_downloader.py example.com pdf --save-credentials
+uv run python file-downloader.py example.com pdf --save-credentials
 
 # Use specific API credentials
-uv run python file_downloader.py example.com docx \
+uv run python file-downloader.py example.com docx \
     --api-key "YOUR_API_KEY" \
     --search-engine-id "YOUR_SEARCH_ENGINE_ID"
 ```
@@ -120,13 +105,13 @@ uv run python file_downloader.py example.com docx \
 #### Windows (PowerShell)
 ```powershell
 # Download 20 PDF files to a specific directory
-uv run python file_downloader.py puolustusvoimat.fi pdf -n 20 -d C:\Downloads\pdfs
+uv run python file-downloader.py puolustusvoimat.fi pdf -n 20 -d C:\Downloads\pdfs
 
 # Save credentials for future use
-uv run python file_downloader.py example.com pdf --save-credentials
+uv run python file-downloader.py example.com pdf --save-credentials
 
 # Use specific API credentials
-uv run python file_downloader.py example.com docx `
+uv run python file-downloader.py example.com docx `
     --api-key "YOUR_API_KEY" `
     --search-engine-id "YOUR_SEARCH_ENGINE_ID"
 ```
@@ -134,13 +119,13 @@ uv run python file_downloader.py example.com docx `
 #### Windows (Command Prompt)
 ```cmd
 :: Download 20 PDF files to a specific directory
-uv run python file_downloader.py puolustusvoimat.fi pdf -n 20 -d C:\Downloads\pdfs
+uv run python file-downloader.py puolustusvoimat.fi pdf -n 20 -d C:\Downloads\pdfs
 
 :: Save credentials for future use
-uv run python file_downloader.py example.com pdf --save-credentials
+uv run python file-downloader.py example.com pdf --save-credentials
 
 :: Use specific API credentials
-uv run python file_downloader.py example.com docx ^
+uv run python file-downloader.py example.com docx ^
     --api-key "YOUR_API_KEY" ^
     --search-engine-id "YOUR_SEARCH_ENGINE_ID"
 ```
@@ -170,16 +155,16 @@ optional arguments:
 
 ```bash
 # PDFs
-uv run python file_downloader.py scientificamerican.com pdf -n 5
+uv run python file-downloader.py scientificamerican.com pdf -n 5
 
 # Word documents
-uv run python file_downloader.py microsoft.com docx -n 10
+uv run python file-downloader.py microsoft.com docx -n 10
 
 # Excel files
-uv run python file_downloader.py data.gov xlsx -n 15
+uv run python file-downloader.py data.gov xlsx -n 15
 
 # PowerPoint presentations
-uv run python file_downloader.py slideshare.net pptx -n 5
+uv run python file-downloader.py slideshare.net pptx -n 5
 ```
 
 ### Organize Downloads by Type
@@ -189,9 +174,9 @@ uv run python file_downloader.py slideshare.net pptx -n 5
 mkdir -p downloads/{pdfs,docs,spreadsheets}
 
 # Download different file types to specific folders
-uv run python file_downloader.py company.com pdf -d downloads/pdfs
-uv run python file_downloader.py company.com docx -d downloads/docs
-uv run python file_downloader.py company.com xlsx -d downloads/spreadsheets
+uv run python file-downloader.py company.com pdf -d downloads/pdfs
+uv run python file-downloader.py company.com docx -d downloads/docs
+uv run python file-downloader.py company.com xlsx -d downloads/spreadsheets
 ```
 
 ## Managing the Virtual Environment
@@ -226,7 +211,7 @@ When you use the `--save-credentials` flag, your API credentials are saved to `g
 }
 ```
 
-**Security Note:** Add `google_api_config.json` to your `.gitignore` file to avoid accidentally committing your credentials.
+**Security Note:** The file `google_api_config.json` is included in `.gitignore` to avoid accidentally committing your credentials.
 
 ## API Limits and Pricing
 
