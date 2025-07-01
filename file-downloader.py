@@ -105,15 +105,31 @@ def download_file(url: str, destination_folder: str = '.') -> bool:
     Download a file from the given URL to the destination folder.
     """
     try:
+        # Remove trailing slashes from URL for cleaner filename extraction
+        clean_url = url.rstrip('/')
+        
         # Extract filename from URL
-        parsed_url = urlparse(url)
+        parsed_url = urlparse(clean_url)
         filename = os.path.basename(parsed_url.path)
         
         # If filename is empty or doesn't have an extension, generate one
         if not filename or '.' not in filename:
-            timestamp = int(time.time())
-            extension = url.split('.')[-1][:4]  # Get extension from URL, max 4 chars
-            filename = f"download_{timestamp}.{extension}"
+            # Try to extract filename from the URL path segments
+            path_segments = [seg for seg in parsed_url.path.split('/') if seg]
+            if path_segments and '.' in path_segments[-1]:
+                filename = path_segments[-1]
+            else:
+                timestamp = int(time.time())
+                # Extract extension from URL more carefully
+                url_parts = clean_url.split('.')
+                if len(url_parts) > 1:
+                    extension = url_parts[-1].split('/')[0][:4]  # Get extension, max 4 chars
+                else:
+                    extension = 'download'
+                filename = f"download_{timestamp}.{extension}"
+        
+        # Clean the filename - remove any trailing slashes or invalid characters
+        filename = filename.rstrip('/').replace('/', '_')
         
         filepath = os.path.join(destination_folder, filename)
         
